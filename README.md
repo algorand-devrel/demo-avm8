@@ -38,6 +38,28 @@ pip install -r requirements.txt
 ```
 4) Run it
 
+### Box demo
+
+Creates a box and does some simple stuff with it
+
 ```sh
-python main.py
+python box_demo.py
+```
+
+### Frame Pointer Demo
+
+```sh
+python frame_pointer_demo.py
+```
+
+### Switch demo
+
+```sh
+python switch_demo.py
+```
+
+### Match demo
+
+```sh
+python match_demo.py
 ```
