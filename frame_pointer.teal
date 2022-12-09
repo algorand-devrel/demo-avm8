@@ -1,0 +1,63 @@
+#pragma version 8
+// Easy deploy
+txn ApplicationID
+bz end
+// Method routing
+txna ApplicationArgs 0
+method "pythag(uint64,uint64)uint64"
+==
+bnz prepare_pythag_args 
+err
+
+// Methods
+prepare_pythag_args:
+  // just to be sure
+  txn OnCompletion
+  int NoOp
+  ==
+  assert
+
+  // Get the 2 ints we're going to use
+  txna ApplicationArgs 1
+  btoi
+  txna ApplicationArgs 2
+  btoi
+
+  // Call subroutine
+  // sub_pythag(a, b) -> c
+  callsub sub_pythag
+  itob
+  pushbytes 0x151f7c75
+  swap
+  concat
+  log
+  // Successfully end
+  b end
+
+// Subroutines
+// sub_pythag(a, b) -> c 
+sub_pythag:
+  // Define proto as having 2 arguments and 1 return value
+  proto 2 1
+
+  // room for the return value
+  int 0					
+  // Square a
+  frame_dig -1
+  frame_dig -1
+  *
+  // Square b
+  frame_dig -2
+  frame_dig -2
+  *
+  // Add them together and take the square root
+  +
+  sqrt
+
+  // place return value
+  frame_bury 0				
+  retsub
+
+// End
+end:
+  int 1
