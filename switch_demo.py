@@ -16,7 +16,7 @@ from beaker.sandbox import get_accounts, get_algod_client
 
 def compile_program(algod: AlgodClient) -> bytes:
     # read in file
-    with open("frame_pointer.teal", "r") as f:
+    with open("switch.teal", "r") as f:
         teal_src = f.read()
 
     compile_result = algod.compile(teal_src)
@@ -55,16 +55,32 @@ def demo():
     app_id = result["application-index"]
 
     # Define the method we want to call
-    pythag_method = Method.from_signature("pythag(uint64,uint64)uint64")
+    play_method = Method.from_signature("play(uint64)string")
 
-    # create ATC to call the method, passing 3,4 as args
-    atc = AtomicTransactionComposer()
-    atc.add_method_call(app_id, pythag_method, acct.address, sp, acct.signer, [3, 4])
-    results: AtomicTransactionResponse = atc.execute(algod, 4)
-    print(f"Confirmed in round {results.confirmed_round}")
+    # Iterate over numbers from [0, 25) and:
+    #   if its divisible by 15 print "FizzBuzz"
+    #   elseif its divisble by 3 print "Fizz"
+    #   elseif its divisible by 5 print "Buzz"
+    #   else print "number"
 
-    # Make sure we got what we expect (3**2 + 4**2 == 5**2)
-    assert results.abi_results[0].return_value == 5
+    for i in range(25):
+        atc = AtomicTransactionComposer()
+        atc.add_method_call(app_id, play_method, acct.address, sp, acct.signer, [i])
+        results: AtomicTransactionResponse = atc.execute(algod, 4)
+        result = results.abi_results[0].return_value
+        match result:
+            case "FizzBuzz":
+                assert i % 15 == 0
+            case "Buzz":
+                assert i % 5 == 0
+            case "Fizz":
+                assert i % 3 == 0
+            case "number":
+                assert True
+            case _:
+                raise Exception("wat?")
+
+        print(f"For {i} got {result}")
 
 
 if __name__ == "__main__":

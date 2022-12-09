@@ -54,7 +54,6 @@ def demo():
     # save the app id for the app we just created
     app_id = result["application-index"]
 
-
     # Define the method we want to call
     add_method = Method.from_signature("add(uint8,uint8)uint16")
 
