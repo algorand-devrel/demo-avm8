@@ -1,17 +1,34 @@
 #pragma version 8
-intcblock 0 1
+intcblock 0 1 64 4096
+bytecblock 0x626f7879
 txn NumAppArgs
 intc_0 // 0
 ==
-bnz main_l2
+bnz main_l4
+txna ApplicationArgs 0
+pushbytes 0xbdf5e8f6 // "do_box_stuff()void"
+==
+bnz main_l3
 err
-main_l2:
+main_l3:
 txn OnCompletion
 intc_0 // NoOp
 ==
-bnz main_l4
-err
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub doboxstuff_1
+intc_1 // 1
+return
 main_l4:
+txn OnCompletion
+intc_0 // NoOp
+==
+bnz main_l6
+err
+main_l6:
 txn ApplicationID
 intc_0 // 0
 ==
@@ -24,3 +41,53 @@ return
 create_0:
 intc_1 // 1
 return
+
+// do_box_stuff
+doboxstuff_1:
+bytec_0 // "boxy"
+intc_3 // 4096
+box_create
+assert
+bytec_0 // "boxy"
+box_len
+store 1
+store 0
+load 1
+assert
+load 0
+intc_3 // 4096
+==
+assert
+bytec_0 // "boxy"
+box_get
+store 3
+store 2
+load 3
+assert
+load 2
+bitlen
+intc_0 // 0
+==
+assert
+bytec_0 // "boxy"
+intc_0 // 0
+intc_2 // 64
+bzero
+b~
+box_replace
+bytec_0 // "boxy"
+intc_0 // 0
+intc_2 // 64
+bzero
+b~
+len
+box_extract
+intc_2 // 64
+bzero
+b~
+==
+assert
+bytec_0 // "boxy"
+box_del
+assert
+retsub

@@ -9,7 +9,7 @@ Prerequisites
 
 Please have these installed already:
 
-- python3.10
+- Python 3.10
 - [sandbox](https://github.com/algorand/sandbox)
 
 

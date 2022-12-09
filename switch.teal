@@ -1,0 +1,43 @@
+#pragma version 8
+txn ApplicationID
+bz end
+method "play(uint64)string"
+txna ApplicationArgs 0
+==
+assert
+txna ApplicationArgs 1
+btoi
+int 15
+%
+switch FizzBuzz num num Fizz num Buzz Fizz num num Fizz Buzz num Fizz num num
+err
+log_string:
+  byte 0x151f7c75
+  swap
+  dup
+  len
+  itob
+  substring 6 8
+  swap
+  concat
+  concat
+  log
+  retsub
+num:
+  byte "number"
+  callsub log_string
+  b end
+Fizz:
+  byte "Fizz"
+  callsub log_string
+  b end
+Buzz:
+  byte "Buzz"
+  callsub log_string
+  b end
+FizzBuzz:
+  byte "FizzBuzz"
+  callsub log_string
+  b end
+end:
+  int 1

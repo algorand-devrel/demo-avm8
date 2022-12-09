@@ -1,0 +1,54 @@
+#pragma version 8
+txn ApplicationID
+bz end
+method "add(uint8,uint8)uint16"
+method "subtract(uint8,uint8)uint8"
+method "multiply(uint8,uint8)uint16"
+method "divide(uint8,uint8)uint8"
+txna ApplicationArgs 0
+match add subtract multiply divide
+err
+get_args:
+  txna ApplicationArgs 1
+  btoi
+  txna ApplicationArgs 2
+  btoi
+  retsub
+log_uint8:
+  byte 0x151f7c75
+  swap
+  itob
+  substring 7 8
+  concat
+  log
+  retsub
+log_uint16:
+  byte 0x151f7c75
+  swap
+  itob
+  substring 6 8
+  concat
+  log
+  retsub
+add:
+  callsub get_args
+  +
+  callsub log_uint16
+  b end
+subtract:
+  callsub get_args
+  -
+  callsub log_uint8
+  b end
+multiply:
+  callsub get_args
+  *
+  callsub log_uint16
+  b end
+divide:
+  callsub get_args
+  /
+  callsub log_uint8
+  b end
+end:
+  int 1

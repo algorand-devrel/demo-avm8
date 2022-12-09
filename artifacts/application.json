@@ -1,7 +1,7 @@
 {
     "hints": {},
     "source": {
-        "approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMQp0eG4gTnVtQXBwQXJncwppbnRjXzAgLy8gMAo9PQpibnogbWFpbl9sMgplcnIKbWFpbl9sMjoKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQpibnogbWFpbl9sNAplcnIKbWFpbl9sNDoKdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKPT0KYXNzZXJ0CmNhbGxzdWIgY3JlYXRlXzAKaW50Y18xIC8vIDEKcmV0dXJuCgovLyBjcmVhdGUKY3JlYXRlXzA6CmludGNfMSAvLyAxCnJldHVybg==",
+        "approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMSA2NCA0MDk2CmJ5dGVjYmxvY2sgMHg2MjZmNzg3OQp0eG4gTnVtQXBwQXJncwppbnRjXzAgLy8gMAo9PQpibnogbWFpbl9sNAp0eG5hIEFwcGxpY2F0aW9uQXJncyAwCnB1c2hieXRlcyAweGJkZjVlOGY2IC8vICJkb19ib3hfc3R1ZmYoKXZvaWQiCj09CmJueiBtYWluX2wzCmVycgptYWluX2wzOgp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CiYmCmFzc2VydApjYWxsc3ViIGRvYm94c3R1ZmZfMQppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sNDoKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQpibnogbWFpbl9sNgplcnIKbWFpbl9sNjoKdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKPT0KYXNzZXJ0CmNhbGxzdWIgY3JlYXRlXzAKaW50Y18xIC8vIDEKcmV0dXJuCgovLyBjcmVhdGUKY3JlYXRlXzA6CmludGNfMSAvLyAxCnJldHVybgoKLy8gZG9fYm94X3N0dWZmCmRvYm94c3R1ZmZfMToKYnl0ZWNfMCAvLyAiYm94eSIKaW50Y18zIC8vIDQwOTYKYm94X2NyZWF0ZQphc3NlcnQKYnl0ZWNfMCAvLyAiYm94eSIKYm94X2xlbgpzdG9yZSAxCnN0b3JlIDAKbG9hZCAxCmFzc2VydApsb2FkIDAKaW50Y18zIC8vIDQwOTYKPT0KYXNzZXJ0CmJ5dGVjXzAgLy8gImJveHkiCmJveF9nZXQKc3RvcmUgMwpzdG9yZSAyCmxvYWQgMwphc3NlcnQKbG9hZCAyCmJpdGxlbgppbnRjXzAgLy8gMAo9PQphc3NlcnQKYnl0ZWNfMCAvLyAiYm94eSIKaW50Y18wIC8vIDAKaW50Y18yIC8vIDY0CmJ6ZXJvCmJ+CmJveF9yZXBsYWNlCmJ5dGVjXzAgLy8gImJveHkiCmludGNfMCAvLyAwCmludGNfMiAvLyA2NApiemVybwpifgpsZW4KYm94X2V4dHJhY3QKaW50Y18yIC8vIDY0CmJ6ZXJvCmJ+Cj09CmFzc2VydApieXRlY18wIC8vICJib3h5Igpib3hfZGVsCmFzc2VydApyZXRzdWI=",
         "clear": "I3ByYWdtYSB2ZXJzaW9uIDgKcHVzaGludCAwIC8vIDAKcmV0dXJu"
     },
     "schema": {
@@ -16,7 +16,15 @@
     },
     "contract": {
         "name": "DemoAVM8",
-        "methods": [],
+        "methods": [
+            {
+                "name": "do_box_stuff",
+                "args": [],
+                "returns": {
+                    "type": "void"
+                }
+            }
+        ],
         "networks": {}
     }
 }

@@ -1,0 +1,65 @@
+#pragma version 8
+// Easy deploy
+txn ApplicationID
+bz end
+// Method routing
+txna ApplicationArgs 0
+method "send_algo(account,uint64)void"
+==
+bnz method_send_algo
+err
+// Methods
+method_send_algo:
+  txn OnCompletion
+  int NoOp
+  ==
+  assert
+  byte "Stack Value Before Subroutine"
+  // Put first argument onto stack
+  txna ApplicationArgs 1
+  btoi
+  txnas Accounts
+  // Put second argument onto stack
+  txna ApplicationArgs 2
+  btoi
+  // Call subroutine
+  // sub_send_algo(recipient, amount) -> amount_minus_fee
+  callsub sub_send_algo
+  // Asset the amount_minus_fee is more than zero
+  assert
+  // Remove "Stack Value Before Subroutine"
+  pop
+  // Successfully end
+  b end
+// Subroutines
+// sub_send_algo(recipient, amount) -> amount_minus_fee
+sub_send_algo:
+  // Define proto as having 2 arguments and 1 return value
+  proto 2 1
+  // Calculate amount_minus_fee
+  frame_dig -1
+  global MinTxnFee
+  -
+  frame_bury 0
+  // Begin Payment
+  itxn_begin
+  int pay
+  itxn_field TypeEnum
+  // Recipient
+  frame_dig -2
+  itxn_field Receiver
+  // Duplicate and use amount_minus_fee result
+  frame_dig 0
+  itxn_field Amount
+  global MinTxnFee
+  itxn_field Fee
+  itxn_submit
+  // All superfluous stack values are removed after retsub,
+  // leaving just the required number of return values
+  byte "Extra"
+  int 12345
+  byte "Values"
+  retsub
+// End
+end:
+  int 1
