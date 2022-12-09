@@ -1,13 +1,18 @@
 #pragma version 8
 txn ApplicationID
 bz end
+// Each line represents the method selector that gets
+// compared against app_args[0] in the match op 
 method "add(uint8,uint8)uint16"
 method "subtract(uint8,uint8)uint8"
 method "multiply(uint8,uint8)uint16"
 method "divide(uint8,uint8)uint8"
 txna ApplicationArgs 0
+// branch to the first matching result
 match add subtract multiply divide
+// otherwise :(
 err
+
 get_args:
   txna ApplicationArgs 1
   btoi
