@@ -10,7 +10,7 @@ Prerequisites
 Please have these installed already:
 
 - Python 3.10
-- [sandbox](https://github.com/algorand/sandbox)
+- [sandbox](https://github.com/algorand/sandbox) running with the latest protocol version
 
 
 Use
@@ -36,17 +36,31 @@ source .venv/bin/activate
 ```sh
 pip install -r requirements.txt
 ```
+
 4) Run it
 
 ### Box demo
 
-Creates a box and does some simple stuff with it
+Creates a box and does some simple stuff with it.
+
+Files:
+
+    - application.py
+    - box_demo.py
+
 
 ```sh
 python box_demo.py
 ```
 
-### Frame Pointer Demo
+### Frame Pointer demo
+
+Simple demo to show how the new frame pointer ops can be used
+
+Files:
+
+    - frame_pointer.teal
+    - frame_pointer_demo.py
 
 ```sh
 python frame_pointer_demo.py
@@ -54,11 +68,25 @@ python frame_pointer_demo.py
 
 ### Switch demo
 
+Simple demo to show how the new switch opcode can be used
+
+Files:
+
+    - switch.teal
+    - switch_demo.py
+
 ```sh
 python switch_demo.py
 ```
 
 ### Match demo
+
+Simple demo to show how the new match opcode can be used
+
+Files:
+
+    - match.teal
+    - match_demo.py
 
 ```sh
 python match_demo.py
