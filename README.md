@@ -44,21 +44,15 @@ git clone git@github.com:algorand-devrel/demo-avm8.git
 # or
 git clone https://github.com/algorand-devrel/demo-avm8.git
 ```
-2) cd into it and create a virtual environment
+2) cd into it and install dependencies
 
 ```sh
 cd demo-avm8
-python -m venv .venv
+poetry install
 source .venv/bin/activate
 ```
 
-3) Install the requirements
-
-```sh
-pip install -r requirements.txt
-```
-
-4) Run it
+3) Run it
 
 ### Box demo
 
