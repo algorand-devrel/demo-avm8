@@ -4,13 +4,12 @@ from algosdk.atomic_transaction_composer import (
     AtomicTransactionResponse,
 )
 from algosdk.abi import Method
-from algosdk.future.transaction import (
+from algosdk.transaction import (
     ApplicationCreateTxn,
     OnComplete,
     wait_for_confirmation,
 )
 from algosdk.v2client.algod import AlgodClient
-
 from beaker.sandbox import get_accounts, get_algod_client
 
 

@@ -4,7 +4,7 @@ from algosdk.atomic_transaction_composer import (
     AtomicTransactionResponse,
 )
 from algosdk.abi import Method
-from algosdk.future.transaction import (
+from algosdk.transaction import (
     ApplicationCreateTxn,
     OnComplete,
     wait_for_confirmation,
